@@ -1,6 +1,6 @@
 {
   "name": "stranica-za-prijavljivanje",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Server for login page using Node.js and Express",
   "main": "index.js",
   "scripts": {
