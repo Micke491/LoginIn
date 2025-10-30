@@ -1,39 +1,84 @@
+/* Opšti stil za telo */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #eef2f7;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f6f8;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
+/* Kontejner za forme */
 .form-container {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ccc;
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
   text-align: center;
-  width: 300px;
 }
 
-input {
-  width: 90%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #bbb;
-  border-radius: 5px;
+/* Naslov forme */
+.form-container h2 {
+  margin-bottom: 25px;
+  color: #333;
 }
 
-button {
-  background: #007bff;
+/* Input polja */
+.form-container input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.form-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Dugmad */
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
   color: white;
-  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-a {
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Linkovi */
+.form-container p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-container p a {
   color: #007bff;
   text-decoration: none;
+}
+
+.form-container p a:hover {
+  text-decoration: underline;
+}
+
+/* Dashboard dodatak */
+.form-container h2 span {
+  display: block;
+  margin-top: 10px;
+  font-size: 18px;
+  color: #666;
 }

@@ -8,7 +8,7 @@ export default function SignUp() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch("http://localhost:5000/signup", {
+        const res = await fetch("http://localhost:5000/SignUp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })
@@ -19,28 +19,28 @@ export default function SignUp() {
     };
 
     return (
-    <div className="form-container">
-      <h2>Reqister</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      <p>
-        Already have a Account? <Link to="/login">Sign In</Link>
-      </p>
-    </div>
-  );
+        <div className="form-container">
+            <h2>Register</h2>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>
+                Already have an account? <Link to="/login">Sign In</Link>
+            </p>
+        </div>
+    );
 }

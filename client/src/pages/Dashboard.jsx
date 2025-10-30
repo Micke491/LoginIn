@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   return (
     <div className="form-container">
-      <h2>Dobrodošao na Dashboard 👋</h2>
+      <h2>Welcome to Dashboard</h2>
       <button onClick={logout}>Odjavi se</button>
     </div>
   );
