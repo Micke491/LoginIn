@@ -3,15 +3,22 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
     const [username, setUsername] = React.useState('');
+    const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters long");
+            return;
+        }
+        
         const res = await fetch("http://localhost:5000/SignUp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ username, email, password })
         });
         const data = await res.json();
         alert(data.message);
@@ -27,6 +34,13 @@ export default function SignUp() {
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 />
                 <input

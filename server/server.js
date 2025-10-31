@@ -17,15 +17,25 @@ mongoose.connect(process.env.MONGO_URI)
 
 // User registration 
 app.post('/SignUp', async (req, res) => {
-    const { username, password } = req.body;
+    let { username, email, password } = req.body;
+    if (!email) return res.status(400).json({ message: "Email required" });
+    email = email.toLowerCase();
+    if (password.length < 8) {
+      return res.status(400).json({ message: "Password must be at least 8 characters long." });
+    }
     try {
         const exists = await User.findOne({ username });
         if (exists) {
             return res.status(400).json({ message: "Username already exists" });
         }
 
+        const emailExists = await User.findOne({ email });
+        if (emailExists) {
+            return res.status(400).json({ message: "Email already registered" });
+        }
+
         const hashed = await bcrypt.hash(password, 10);
-        const user = new User({ username, password: hashed });
+        const user = new User({ username, email, password: hashed }); // email is now lowercased
         await user.save();
 
         res.json({ message: "User registered successfully" });
@@ -36,9 +46,11 @@ app.post('/SignUp', async (req, res) => {
 
 // User login
 app.post('/Login', async (req, res) => {
-    const { username, password } = req.body;
+    let { email, password } = req.body;
+    if (!email) return res.status(400).json({ message: "Email required" });
+    email = email.toLowerCase();
     try {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email }); 
         if (!user) {
             return res.status(400).json({ message: "Invalid credentials" });
         }
@@ -48,7 +60,7 @@ app.post('/Login', async (req, res) => {
             return res.status(400).json({ message: "Invalid password" });
         }
         
-        const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '2h' });
+        const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '2h' });
 
         res.json({ message: "Login successful", token });
     } catch (err) {
