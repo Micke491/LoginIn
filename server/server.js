@@ -5,10 +5,12 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const User = require("./models/User");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use("/api", authRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)

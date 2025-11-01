@@ -44,7 +44,9 @@ export default function Login() {
             </form>
             <p>
                 Don't have an account? <Link to="/">Register</Link>
-            </p>
+                <br />
+                <Link to="/forgot-password">Forgot Password?</Link>
+            </p>   
         </div>
     );
 }
