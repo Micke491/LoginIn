@@ -16,7 +16,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Forgot Password</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -28,7 +28,12 @@ export default function ForgotPassword() {
         />
         <button type="submit">Send Reset Link</button>
       </form>
-      <p>{message}</p>
+      {message && (
+        <p className="message">{message}</p>
+      )}
+      <p>
+        <a href="/login">Back to Login</a>
+      </p>
     </div>
   );
 }

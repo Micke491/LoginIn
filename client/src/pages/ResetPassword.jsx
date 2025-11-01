@@ -18,7 +18,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Reset Password</h2>
       <form onSubmit={handleReset}>
         <input
@@ -30,7 +30,12 @@ export default function ResetPassword() {
         />
         <button type="submit">Reset Password</button>
       </form>
-      <p>{message}</p>
+      {message && (
+        <p className="message">{message}</p>
+      )}
+      <p>
+        <a href="/login">Back to Login</a>
+      </p>
     </div>
   );
 }

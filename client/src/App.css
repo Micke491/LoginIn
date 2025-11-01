@@ -1,84 +1,165 @@
+/* Reset osnovnih stilova */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Opšti stil za telo */
 body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f6f8;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #cfd9df, #e2ebf0);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  padding: 20px;
+  overflow-x: hidden;
 }
 
 /* Kontejner za forme */
 .form-container {
-  background-color: #fff;
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
   padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
   text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.form-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Naslov forme */
 .form-container h2 {
-  margin-bottom: 25px;
-  color: #333;
+  margin-bottom: 20px;
+  color: #1a2b44;
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  position: relative;
+}
+
+.form-container h2::after {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
 }
 
 /* Input polja */
 .form-container input {
   width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  border: 1.5px solid #d4d8e3;
+  border-radius: 12px;
   font-size: 16px;
-  transition: border-color 0.2s;
+  background: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
 }
 
 .form-container input:focus {
-  border-color: #007bff;
+  border-color: #00bfff;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
   outline: none;
+  transform: scale(1.02);
 }
 
 /* Dugmad */
 .form-container button {
   width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
+  padding: 14px;
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+  transition: all 0.3s ease;
 }
 
 .form-container button:hover {
-  background-color: #0056b3;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(0, 123, 255, 0.4);
+  background: linear-gradient(90deg, #00d4ff, #007bff);
 }
 
 /* Linkovi */
 .form-container p {
-  margin-top: 15px;
-  font-size: 14px;
+  margin-top: 18px;
+  margin-bottom: 0;
+  font-size: 15px;
   color: #555;
+  letter-spacing: 0.2px;
 }
 
 .form-container p a {
   color: #007bff;
-  text-decoration: none;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
 }
 
 .form-container p a:hover {
-  text-decoration: underline;
+  color: #00d4ff;
+  text-decoration: none;
+}
+
+/* Poruka (success/error) */
+.form-container p.message {
+  font-size: 15px;
+  margin-top: 12px;
+  margin-bottom: 0;
+  color: #007bff;
+  background: rgba(0, 191, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #d4d8e3;
+  display: inline-block;
+  width: 100%;
+  animation: fadeIn 0.5s ease;
 }
 
 /* Dashboard dodatak */
 .form-container h2 span {
   display: block;
   margin-top: 10px;
-  font-size: 18px;
+  font-size: 1.1rem;
   color: #666;
+  font-weight: 400;
+}
+
+/* Animacije */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivno za mobilne uređaje */
+@media (max-width: 500px) {
+  body {
+    align-items: flex-start;
+    padding: 30px 0;
+  }
+  .form-container {
+    padding: 24px 16px;
+    border-radius: 16px;
+    max-width: 96vw;
+  }
 }
