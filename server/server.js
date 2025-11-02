@@ -6,11 +6,13 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const User = require("./models/User");
 const authRoutes = require("./routes/authRoutes");
+const taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/api", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
@@ -62,7 +64,7 @@ app.post('/Login', async (req, res) => {
             return res.status(400).json({ message: "Invalid password" });
         }
         
-        const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '2h' });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '2h' });
 
         res.json({ message: "Login successful", token });
     } catch (err) {
