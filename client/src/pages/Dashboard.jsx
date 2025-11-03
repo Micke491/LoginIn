@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const fetchTasks = async () => {
     try {
@@ -62,7 +64,7 @@ export default function Dashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.reload();
+    navigate("/login");
   };
 
   const formatDate = (isoString) => {
